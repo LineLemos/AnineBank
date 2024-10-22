@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#262626",
+    backgroundColor: "#000",
     height: "100%",
     padding: 15,
   },
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
   },
 
   next: {
-    borderBottomColor: "#737373",
-    borderTopColor: "#737373",
+    borderBottomColor: "#262626",
+    borderTopColor: "#262626",
     marginTop: 40,
     borderTopWidth: 1.5,
     borderBottomWidth: 1.5,

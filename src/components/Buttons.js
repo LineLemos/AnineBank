@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   areaButton: {
-    backgroundColor: "#737373",
+    backgroundColor: "#262626",
     height: 70,
     width: 69,
     borderRadius: 50,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   },
 
   cardButton: {
-    backgroundColor: "#737373",
+    backgroundColor: "#262626",
     width: 328,
     height: 55,
     flexDirection: 'row',

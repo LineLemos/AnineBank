@@ -37,7 +37,7 @@ export default function App() {
                     marginTop: 40,
                   }}
                 />
-                <View style={{ flexDirection: "row", alignItems:'center', padding: 20, paddingTop: 70, gap:20}}>
+                <View style={{ flexDirection: "row", alignItems:'center', padding: 20, paddingTop: 70, gap:10}}>
                   <TouchableOpacity onPress={() => alert("Ícone 1")}>
                     <FontAwesome5
                       name="eye"
