@@ -35,27 +35,33 @@ export default function Pix({route, navigation}){
           keyboardType="numeric"
           onChangeText={setValorPix}
         />
-        <Button title="Enviar PIX" onPress={sendPix} />
+        <Button style={styles.button} title="Enviar PIX" onPress={sendPix} />
       </View>
     );
 }
 
 const styles = StyleSheet.create({
-
-     container: {
+  container: {
     flex: 1,
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
+    backgroundColor: "#262626",
   },
   label: {
     fontSize: 18,
     marginVertical: 10,
+    color:"#fff",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#737373",
     borderRadius: 5,
     padding: 10,
     marginVertical: 10,
+    color:"#fff",
+  },
+
+  button: {
+    backgroundColor: "#8A19D6",
   },
 });

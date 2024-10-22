@@ -23,6 +23,9 @@ export default function App() {
                   backgroundColor: "#8A19D6",
                   padding: 10,
                   height: 130,
+                  flexDirection: 'row',
+                  alignItems:'center',
+                  justifyContent: 'space-between',
                 }}
               >
                 <Image
@@ -34,7 +37,7 @@ export default function App() {
                     marginTop: 40,
                   }}
                 />
-                <View style={{ flexDirection: "row", justifyContent:'flex-end', alignItems:'center'}}>
+                <View style={{ flexDirection: "row", alignItems:'center', padding: 20, paddingTop: 70, gap:20}}>
                   <TouchableOpacity onPress={() => alert("Ícone 1")}>
                     <FontAwesome5
                       name="eye"
