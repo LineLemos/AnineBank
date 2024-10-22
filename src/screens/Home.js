@@ -8,10 +8,19 @@ export default function Home({ navigation }) {
     navigation.navigate("Pix", { saldo, setSaldo });
   };
 
+
+const formatCurrency = (value) => {
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+};
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.account}>Conta</Text>
-      <Text style={styles.account}>R${saldo}</Text>
+      <Text style={styles.account}>{formatCurrency(saldo)}</Text>
       <Buttons onPress={handlePix} />
       <View style={styles.next}>
         <Text style={styles.title}>Próximo pagamento</Text>
