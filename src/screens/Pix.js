@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: "center",
-    backgroundColor: "#262626",
+    backgroundColor: "#000",
   },
   label: {
     fontSize: 18,
