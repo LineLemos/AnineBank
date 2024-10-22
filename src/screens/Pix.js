@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  TextInput,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
 export default function Pix({ route, navigation }) {
-  const { saldo, setSaldo } = route.params;
+  const [ saldo, setSaldo ] = route.params;
   const [valorPix, setValorPix] = useState("");
   const [chavePix, setChavePix] = useState("");
 
@@ -20,7 +27,10 @@ export default function Pix({ route, navigation }) {
   };
 
   const sendPix = () => {
-    const valor = parseFloat(valorPix.replace(/[^\d.-]/g, "")) || 0;
+    const valor = parseFloat(valorPix);
+    const valorSaldo = parseFloat(saldo);
+    console.log(valor);
+     console.log(valorSaldo);
 
     if (valor <= saldo) {
       setSaldo(saldo - valor);
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 10,
     color: "#fff",
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   input: {
     borderWidth: 1,
@@ -79,19 +89,19 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 
-  button:{
-    fontWeight: 'bold',
+  button: {
+    fontWeight: "bold",
   },
 
   button: {
-    backgroundColor: '#6b21a8', // Cor de fundo do botão
+    backgroundColor: "#6b21a8", // Cor de fundo do botão
     padding: 15,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
-    color: '#fff', 
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold', 
+    fontWeight: "bold",
   },
 });
