@@ -1,89 +1,71 @@
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 
+
 export default function Buttons({ onPress }) {
+
+const buttons = [
+  {
+    id: 1,
+    title: "Pix",
+    icon: <FontAwesome6 name="pix" size={24} color="#fff" />,
+  },
+  {
+    id: 2,
+    title: "Pagar",
+    icon: <FontAwesome5 name="barcode" size={24} color="#fff" />,
+  },
+  {
+    id: 3,
+    title: "Transferir",
+    icon: <FontAwesome6 name="money-bill-transfer" size={24} color="#fff" />,
+  },
+  {
+    id: 4,
+    title: "Recarga",
+    icon: <FontAwesome5 name="mobile" size={24} color="#fff" />,
+  },
+  {
+    id: 5,
+    title: "Depositar",
+    icon: <FontAwesome6 name="money-bill-transfer" size={24} color="#fff" />,
+  },
+  {
+    id: 6,
+    title: "Caixinhas",
+    icon: <FontAwesome6 name="circle-dollar-to-slot" size={24} color="#fff" />,
+  },
+  {
+    id: 7,
+    title: "Investir",
+    icon: <FontAwesome5 name="signal" size={24} color="#fff" />,
+  },
+];
+
   return (
     <View>
-    <ScrollView
-      style={styles.container}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-    >
-      <TouchableOpacity style={styles.actionButton} onPress={onPress}>
+        <FlatList data={buttons}
+        contentContainerStyle
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item}) => ( <TouchableOpacity style={styles.actionButton} onPress={() => item.title === 'Pix' && onPress() }>
         <View style={styles.areaButton}>
-          <FontAwesome6 name="pix" size={23} color="#fff" />
+            {item.icon}
         </View>
-        <Text style={styles.labelButton}>Área Pix</Text>
+        <Text style={styles.labelButton}>{item.title}</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome5 name="barcode" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Pagar</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome6 name="hand-holding-dollar" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Pegar{"\n"}emprést</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome6 name="money-bill-transfer" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Transferir</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome5 name="mobile" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Recarga</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome6 name="money-bill-transfer" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Depositar</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome6 name="circle-dollar-to-slot" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Caixinhas</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.actionButton}>
-        <View style={styles.areaButton}>
-          <FontAwesome5 name="signal" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelButton}>Investir</Text>
-      </TouchableOpacity>
-    </ScrollView>
-
-      <TouchableOpacity style={styles.cardButton}>
-        <View style={styles.areaCardButton}>
-          <FontAwesome5 name="credit-card" size={20} color="#fff" />
-        </View>
-        <Text style={styles.labelCardButton}>Meus cartões</Text>
-      </TouchableOpacity>
+      
+    )}
+    />
     </View>
-
     
   );
 }
+
 const styles = StyleSheet.create({
 
-    container:{
-       
-    },
   actionButton: {
     paddingTop: 40,
     paddingHorizontal: 7,

@@ -1,12 +1,23 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
 import Home from "./src/screens/Home.js";
 import Pix from "./src/screens/Pix.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
+
+const PixHeader = () => (
+  <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <Text style={{ color: "#fff", fontSize: 18, marginRight: 16 }}>
+      Área Pix
+    </Text>
+    <FontAwesome6 name="pix" size={22} color="#fff" />
+  </View>
+);
+
 
 export default function App() {
   return (
@@ -22,7 +33,7 @@ export default function App() {
                 style={{
                   backgroundColor: "#6b21a8",
                   padding: 10,
-                  height: 110,
+                  height: 115,
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "space-between",
@@ -79,11 +90,13 @@ export default function App() {
           name="Pix"
           component={Pix}
           options={{
-            title: 'Área Pix',
             headerStyle: {
               backgroundColor: "#6b21a8",
+              height: 130,
             },
             headerTintColor: "#fff",
+      
+            headerTitle: () => <PixHeader />,
           }}
         />
       </Stack.Navigator>

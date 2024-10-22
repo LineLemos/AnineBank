@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput, View, Text, Button, StyleSheet } from "react-native";
+import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function Pix({ route, navigation }) {
   const { saldo, setSaldo } = route.params;
@@ -20,7 +20,7 @@ export default function Pix({ route, navigation }) {
   };
 
   const sendPix = () => {
-    const valor = parseFloat(valorPix.replace(/[^\d.-]/g, ""));
+    const valor = parseFloat(valorPix.replace(/[^\d.-]/g, "")) || 0;
 
     if (valor <= saldo) {
       setSaldo(saldo - valor);
@@ -49,12 +49,9 @@ export default function Pix({ route, navigation }) {
         keyboardType="numeric"
         onChangeText={handleInputChange}
       />
-      <Button
-        style={styles.button}
-        title="Enviar PIX"
-        onPress={sendPix}
-        color="#6b21a8"
-      />
+      <TouchableOpacity style={styles.button} onPress={sendPix}>
+        <Text style={styles.buttonText}>Enviar PIX</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -63,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    gap: 30,
     justifyContent: "center",
     backgroundColor: "#000",
   },
@@ -70,6 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 10,
     color: "#fff",
+    fontWeight: 'bold',
   },
   input: {
     borderWidth: 1,
@@ -78,5 +77,21 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
     color: "#fff",
+  },
+
+  button:{
+    fontWeight: 'bold',
+  },
+
+  button: {
+    backgroundColor: '#6b21a8', // Cor de fundo do botão
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff', 
+    fontSize: 16,
+    fontWeight: 'bold', 
   },
 });

@@ -41,13 +41,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
     height: "100%",
-    padding: 15,
+    
   },
 
   account: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+    paddingLeft: 20,
+    marginTop: 20,
+    
   },
 
   next: {
