@@ -20,24 +20,32 @@ export default function App() {
             header: () => (
               <View
                 style={{
-                  backgroundColor: "#8A19D6",
+                  backgroundColor: "#6b21a8",
                   padding: 10,
-                  height: 130,
-                  flexDirection: 'row',
-                  alignItems:'center',
-                  justifyContent: 'space-between',
+                  height: 110,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                 }}
               >
                 <Image
                   source={require("./assets/cliente.jpeg")}
                   style={{
-                    width: 65,
-                    height: 65,
+                    width: 60,
+                    height: 60,
                     borderRadius: 50,
                     marginTop: 40,
                   }}
                 />
-                <View style={{ flexDirection: "row", alignItems:'center', padding: 20, paddingTop: 70, gap:10}}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    padding: 20,
+                    paddingTop: 50,
+                    gap: 10,
+                  }}
+                >
                   <TouchableOpacity onPress={() => alert("Ícone 1")}>
                     <FontAwesome5
                       name="eye"
@@ -67,7 +75,17 @@ export default function App() {
             ),
           }}
         />
-        <Stack.Screen name="Pix" component={Pix} options={{}} />
+        <Stack.Screen
+          name="Pix"
+          component={Pix}
+          options={{
+            title: 'Área Pix',
+            headerStyle: {
+              backgroundColor: "#6b21a8",
+            },
+            headerTintColor: "#fff",
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

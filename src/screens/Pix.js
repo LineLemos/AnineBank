@@ -6,6 +6,9 @@ export default function Pix({route, navigation}){
     const {saldo, setSaldo} = route.params;
     const [valorPix, setValorPix] = useState("");
     const [chavePix, setChavePix] = useState("");
+
+
+    
     
     const sendPix = () => { 
         const valor = parseFloat(valorPix);
@@ -24,6 +27,7 @@ export default function Pix({route, navigation}){
         <TextInput
           style={styles.input}
           placeholder="Digite a chave PIX"
+          placeholderTextColor="#737373"
           value={chavePix}
           onChangeText={setChavePix}
         />
@@ -31,11 +35,17 @@ export default function Pix({route, navigation}){
         <TextInput
           style={styles.input}
           placeholder="Digite o valor"
+          placeholderTextColor="#737373"
           value={valorPix}
           keyboardType="numeric"
           onChangeText={setValorPix}
         />
-        <Button style={styles.button} title="Enviar PIX" onPress={sendPix} />
+        <Button
+          style={styles.button}
+          title="Enviar PIX"
+          onPress={sendPix}
+          color="#6b21a8"
+        />
       </View>
     );
 }
@@ -61,7 +71,5 @@ const styles = StyleSheet.create({
     color:"#fff",
   },
 
-  button: {
-    backgroundColor: "#8A19D6",
-  },
+
 });
