@@ -9,8 +9,9 @@ import {
 } from "react-native";
 
 export default function Pix({ route, navigation }) {
-  const [ saldo, setSaldo ] = route.params;
+  const { saldo, setSaldo } = route.params;
   const [valorPix, setValorPix] = useState("");
+  const [valorPix2, setValorPix2] = useState();
   const [chavePix, setChavePix] = useState("");
 
   const formatCurrency = (value) => {
@@ -23,14 +24,16 @@ export default function Pix({ route, navigation }) {
   };
 
   const handleInputChange = (value) => {
+    setValorPix2(value);
     setValorPix(formatCurrency(value));
   };
 
   const sendPix = () => {
     const valor = parseFloat(valorPix);
     const valorSaldo = parseFloat(saldo);
-    console.log(valor);
-     console.log(valorSaldo);
+    console.log("Transferência: ", valor);
+    console.log("Saldo: ", valorSaldo);
+    console.log("Transferência 2: ", valorPix2);
 
     if (valor <= saldo) {
       setSaldo(saldo - valor);
