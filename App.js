@@ -1,17 +1,18 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
 import Home from "./src/screens/Home.js";
 import Pix from "./src/screens/Pix.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { NavigationContainer } from "@react-navigation/native";
+import { useEffect} from "react";
+import { StatusBar } from "react-native";
 
 const Stack = createStackNavigator();
 
 const PixHeader = () => (
   <View style={{ flexDirection: "row", alignItems: "center" }}>
-    <Text style={{ color: "#fff", fontSize: 18, marginRight: 16 }}>
+    <Text style={{ color: "#fff", fontSize: 18, marginRight: 16, fontWeight:'bold' }}>
       Área Pix
     </Text>
     <FontAwesome6 name="pix" size={22} color="#fff" />
@@ -20,9 +21,13 @@ const PixHeader = () => (
 
 
 export default function App() {
+useEffect(() => {
+  StatusBar.setBarStyle("light-content", true);
+}, []);
+
   return (
     <NavigationContainer style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" backgroundColor='#6b21a8'/>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
@@ -32,8 +37,8 @@ export default function App() {
               <View
                 style={{
                   backgroundColor: "#6b21a8",
-                  padding: 10,
-                  height: 115,
+                  padding: 8,
+                  height: 90,
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "space-between",
@@ -45,7 +50,8 @@ export default function App() {
                     width: 60,
                     height: 60,
                     borderRadius: 50,
-                    marginTop: 40,
+                    marginTop: 20,
+                    marginLeft:8,
                   }}
                 />
                 <View
@@ -53,8 +59,8 @@ export default function App() {
                     flexDirection: "row",
                     alignItems: "center",
                     padding: 20,
-                    paddingTop: 50,
-                    gap: 10,
+                    paddingTop: 30,
+                    gap: 8,
                   }}
                 >
                   <TouchableOpacity onPress={() => alert("Ícone 1")}>
@@ -92,7 +98,7 @@ export default function App() {
           options={{
             headerStyle: {
               backgroundColor: "#6b21a8",
-              height: 130,
+              height: 100,
             },
             headerTintColor: "#fff",
       

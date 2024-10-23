@@ -53,7 +53,7 @@ export default function Buttons({ onPress }) {
     <View>
       <FlatList
         data={buttons}
-        contentContainerStyle={{paddingHorizontal:8, alignItems:'center'}}
+        contentContainerStyle={{ paddingHorizontal: 8, alignItems: "center" }}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
@@ -62,10 +62,19 @@ export default function Buttons({ onPress }) {
             onPress={() => item.title === "Pix" && onPress()}
           >
             <View style={styles.areaButton}>{item.icon}</View>
-            <Text style={styles.labelButton} numberOfLines={2}>{item.title}</Text>
+            <Text style={styles.labelButton} numberOfLines={2}>
+              {item.title}
+            </Text>
           </TouchableOpacity>
         )}
       />
+
+      <View style={styles.myCardsWrapper}>
+        <TouchableOpacity style={styles.myCard}>
+          <FontAwesome5 name="credit-card" size={22} color="#fff" />
+          <Text style={{ marginLeft: 15, color: "#fff" }}>Meus Cartões</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -100,25 +109,15 @@ const styles = StyleSheet.create({
     height: 55,
     
   },
-
-  cardButton: {
-    backgroundColor: "#262626",
-    width: 328,
-    height: 55,
-    flexDirection: "row",
-    borderRadius: 16,
-    marginTop: 30,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-
-  areaCardButton: {
-    padding: 16,
-  },
-
-  labelCardButton: {
-    color: "#fff",
-    fontWeight: "bold",
-    paddingTop: 14,
-  },
+    myCardsWrapper: {
+        padding: 20,
+    },
+    myCard: {
+        backgroundColor: '#262626',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
+        borderRadius: 16,
+        marginTop: 16,
+    },
 });
