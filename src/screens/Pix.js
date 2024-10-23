@@ -3,7 +3,6 @@ import {
   TextInput,
   View,
   Text,
-  Button,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
@@ -24,12 +23,16 @@ export default function Pix({ route, navigation }) {
   };
 
   const handleInputChange = (value) => {
-    setValorPix2(value);
-    setValorPix(formatCurrency(value));
+  
+    const cleanedValue = value.replace(/\D/g, ""); 
+    const floatValue = parseFloat(cleanedValue) / 100; 
+
+    setValorPix2(floatValue); 
+    setValorPix(formatCurrency(value)); 
   };
 
   const sendPix = () => {
-    const valor = parseFloat(valorPix);
+    const valor = parseFloat(valorPix2);
     const valorSaldo = parseFloat(saldo);
     console.log("Transferência: ", valor);
     console.log("Saldo: ", valorSaldo);

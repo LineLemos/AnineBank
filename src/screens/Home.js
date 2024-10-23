@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Buttons from "../components/Buttons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Home({ navigation }) {
   const [saldo, setSaldo] = useState(100);
@@ -21,7 +22,7 @@ const formatCurrency = (value) => {
     <View style={styles.container}>
       <Text style={styles.account}>Conta</Text>
       <Text style={styles.account}>{formatCurrency(saldo)}</Text>
-      <Buttons onPress={handlePix} />
+      <Buttons onPress={handlePix}/>
       <View style={styles.next}>
         <Text style={styles.title}>Próximo pagamento</Text>
         <Text style={styles.dateToPay}>Quinta-feira, 14 Nov</Text>
