@@ -7,6 +7,7 @@ import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { NavigationContainer } from "@react-navigation/native";
 import { useEffect} from "react";
 import { StatusBar } from "react-native";
+import { ThemeProvider } from "./src/components/Context"; 
 
 const Stack = createStackNavigator();
 
@@ -26,87 +27,89 @@ useEffect(() => {
 }, []);
 
   return (
-    <NavigationContainer style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor='#6b21a8'/>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            header: () => (
-              <View
-                style={{
-                  backgroundColor: "#6b21a8",
-                  padding: 8,
-                  height: 90,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Image
-                  source={require("./assets/cliente.jpeg")}
-                  style={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: 50,
-                    marginTop: 20,
-                    marginLeft:8,
-                  }}
-                />
+    <ThemeProvider>
+      <NavigationContainer style={styles.container}>
+        <StatusBar barStyle="light-content" backgroundColor="#6b21a8" />
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              header: () => (
                 <View
                   style={{
+                    backgroundColor: "#6b21a8",
+                    padding: 8,
+                    height: 80,
                     flexDirection: "row",
                     alignItems: "center",
-                    padding: 20,
-                    paddingTop: 30,
-                    gap: 8,
+                    justifyContent: "space-between",
                   }}
                 >
-                  <TouchableOpacity onPress={() => alert("Ícone 1")}>
-                    <FontAwesome5
-                      name="eye"
-                      size={20}
-                      color="#fff"
-                      style={{ marginHorizontal: 10 }}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => alert("Ícone 2")}>
-                    <FontAwesome5
-                      name="question-circle"
-                      size={20}
-                      color="#fff"
-                      style={{ marginHorizontal: 10 }}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => alert("Ícone 3")}>
-                    <FontAwesome5
-                      name="check-square"
-                      size={20}
-                      color="#fff"
-                      style={{ marginHorizontal: 10 }}
-                    />
-                  </TouchableOpacity>
+                  <Image
+                    source={require("./assets/cliente.jpeg")}
+                    style={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: 50,
+                      marginTop: 6,
+                      marginLeft: 8,
+                    }}
+                  />
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      padding: 20,
+                      paddingTop: 20,
+                      gap: 8,
+                    }}
+                  >
+                    <TouchableOpacity onPress={() => alert("Ícone 1")}>
+                      <FontAwesome5
+                        name="eye"
+                        size={20}
+                        color="#fff"
+                        style={{ marginHorizontal: 10 }}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => alert("Ícone 2")}>
+                      <FontAwesome5
+                        name="question-circle"
+                        size={20}
+                        color="#fff"
+                        style={{ marginHorizontal: 10 }}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => alert("Ícone 3")}>
+                      <FontAwesome5
+                        name="check-square"
+                        size={20}
+                        color="#fff"
+                        style={{ marginHorizontal: 10 }}
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
-            ),
-          }}
-        />
-        <Stack.Screen
-          name="Pix"
-          component={Pix}
-          options={{
-            headerStyle: {
-              backgroundColor: "#6b21a8",
-              height: 100,
-            },
-            headerTintColor: "#fff",
-      
-            headerTitle: () => <PixHeader />,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="Pix"
+            component={Pix}
+            options={{
+              headerStyle: {
+                backgroundColor: "#6b21a8",
+                height: 100,
+              },
+              headerTintColor: "#fff",
+
+              headerTitle: () => <PixHeader />,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
 

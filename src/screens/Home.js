@@ -2,14 +2,15 @@ import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Buttons from "../components/Buttons";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
-
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {useTheme} from "../components/Context";
 
 export default function Home({ navigation }) {
   const [saldo, setSaldo] = useState(100);
   const handlePix = () => {
     navigation.navigate("Pix", { saldo, setSaldo });
   };
+
+  const { theme, toggleTheme } = useTheme();
 
   const formatCurrency = (value) => {
     return value.toLocaleString("pt-BR", {
@@ -27,7 +28,7 @@ export default function Home({ navigation }) {
           alignItems: "center",
         }}
       >
-        <Text style={styles.account}>Conta</Text>
+        <Text style={[styles.account, {color: theme.textColor}]}>Conta</Text>
         <View
           style={{
             position: "absolute",

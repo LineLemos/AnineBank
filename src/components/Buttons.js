@@ -1,7 +1,8 @@
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { FlatList } from "react-native-gesture-handler";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
+import { useTheme } from "../components/Context";
 
 export default function Buttons({ onPress }) {
 
