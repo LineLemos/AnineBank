@@ -4,7 +4,7 @@ import Buttons from "../components/Buttons";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import {useTheme} from "../components/Context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SaldoProvider, useSaldo } from "../components/SaldoContext";
+import { useSaldo } from "../components/SaldoContext";
 
 
   export default function Home({ navigation }) {

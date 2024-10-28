@@ -1,14 +1,15 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet, View, Image, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity, Text, StatusBar} from "react-native";
 import Home from "./src/screens/Home.js";
 import Pix from "./src/screens/Pix.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { NavigationContainer } from "@react-navigation/native";
 import { useEffect } from "react";
-import { StatusBar } from "react-native";
 import { useTheme, ThemeProvider } from "./src/components/Context";
 import { SaldoProvider } from "./src/components/SaldoContext";
+
+
 
 const Stack = createStackNavigator();
 
