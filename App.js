@@ -5,26 +5,47 @@ import Pix from "./src/screens/Pix.js";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { NavigationContainer } from "@react-navigation/native";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { StatusBar } from "react-native";
-import { ThemeProvider } from "./src/components/Context"; 
+import { useTheme, ThemeProvider } from "./src/components/Context";
 
 const Stack = createStackNavigator();
 
 const PixHeader = () => (
   <View style={{ flexDirection: "row", alignItems: "center" }}>
-    <Text style={{ color: "#fff", fontSize: 18, marginRight: 16, fontWeight:'bold' }}>
+    <Text
+      style={{
+        color: "#fff",
+        fontSize: 18,
+        marginRight: 16,
+        fontWeight: "600",
+      }}
+    >
       Área Pix
     </Text>
     <FontAwesome6 name="pix" size={22} color="#fff" />
   </View>
 );
 
+const ThemeToggleButton = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <TouchableOpacity onPress={toggleTheme}>
+      <FontAwesome5
+        name={theme.textColor === "#000" ? "sun" : "moon"}
+        size={20}
+        color="#fff"
+        style={{ marginHorizontal: 10 }}
+      />
+    </TouchableOpacity>
+  );
+};
 
 export default function App() {
-useEffect(() => {
-  StatusBar.setBarStyle("light-content", true);
-}, []);
+  useEffect(() => {
+    StatusBar.setBarStyle("light-content", true);
+  }, []);
 
   return (
     <ThemeProvider>
@@ -49,10 +70,9 @@ useEffect(() => {
                   <Image
                     source={require("./assets/cliente.jpeg")}
                     style={{
-                      width: 60,
-                      height: 60,
+                      width: 55,
+                      height: 55,
                       borderRadius: 50,
-                      marginTop: 6,
                       marginLeft: 8,
                     }}
                   />
@@ -65,7 +85,8 @@ useEffect(() => {
                       gap: 8,
                     }}
                   >
-                    <TouchableOpacity onPress={() => alert("Ícone 1")}>
+                    <ThemeToggleButton />
+                    <TouchableOpacity >
                       <FontAwesome5
                         name="eye"
                         size={20}
@@ -73,7 +94,8 @@ useEffect(() => {
                         style={{ marginHorizontal: 10 }}
                       />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => alert("Ícone 2")}>
+
+                    <TouchableOpacity >
                       <FontAwesome5
                         name="question-circle"
                         size={20}
@@ -81,7 +103,7 @@ useEffect(() => {
                         style={{ marginHorizontal: 10 }}
                       />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => alert("Ícone 3")}>
+                    <TouchableOpacity >
                       <FontAwesome5
                         name="check-square"
                         size={20}
@@ -113,6 +135,4 @@ useEffect(() => {
   );
 }
 
-const styles = StyleSheet.create({
-  
-});
+const styles = StyleSheet.create({});

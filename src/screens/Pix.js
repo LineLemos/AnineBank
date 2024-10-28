@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ThemeProvider, useTheme } from "../components/Context";
 import {
   TextInput,
   View,
@@ -8,6 +9,8 @@ import {
 } from "react-native";
 
 export default function Pix({ route, navigation }) {
+
+  const { theme } = useTheme();
   const { saldo, setSaldo } = route.params;
   const [valorPix, setValorPix] = useState("");
   const [valorPix2, setValorPix2] = useState();
@@ -23,12 +26,11 @@ export default function Pix({ route, navigation }) {
   };
 
   const handleInputChange = (value) => {
-  
-    const cleanedValue = value.replace(/\D/g, ""); 
-    const floatValue = parseFloat(cleanedValue) / 100; 
+    const cleanedValue = value.replace(/\D/g, "");
+    const floatValue = parseFloat(cleanedValue) / 100;
 
-    setValorPix2(floatValue); 
-    setValorPix(formatCurrency(value)); 
+    setValorPix2(floatValue);
+    setValorPix(formatCurrency(value));
   };
 
   const sendPix = () => {
@@ -47,8 +49,10 @@ export default function Pix({ route, navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Chave PIX:</Text>
+    <View
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
+      <Text style={[styles.label, { color: theme.textColor }]}>Chave PIX:</Text>
       <TextInput
         style={styles.input}
         placeholder="Digite a chave PIX"
@@ -56,7 +60,9 @@ export default function Pix({ route, navigation }) {
         value={chavePix}
         onChangeText={setChavePix}
       />
-      <Text style={styles.label}>Valor do PIX:</Text>
+      <Text style={[styles.label, { color: theme.textColor }]}>
+        Valor do PIX:
+      </Text>
       <TextInput
         style={styles.input}
         placeholder="Digite o valor"
@@ -76,23 +82,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    gap: 30,
     justifyContent: "center",
-    backgroundColor: "#000",
+    marginBottom: 130,
   },
+
   label: {
     fontSize: 18,
     marginVertical: 10,
-    color: "#fff",
-    fontWeight: "bold",
+    fontWeight: "600",
   },
+
   input: {
     borderWidth: 1,
     borderColor: "#737373",
     borderRadius: 5,
     padding: 10,
     marginVertical: 10,
-    color: "#fff",
+    marginBottom: 30,
   },
 
   button: {
@@ -100,11 +106,12 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: "#6b21a8", // Cor de fundo do botão
+    backgroundColor: "#6b21a8",
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
   },
+
   buttonText: {
     color: "#fff",
     fontSize: 16,

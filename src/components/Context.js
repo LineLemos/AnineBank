@@ -12,16 +12,18 @@ export const ThemeProvider = ({ children }) => {
   };
 
   const theme = LightTheme
-    ? { 
-        backgroundColor: "#f0f0f0", 
-        textColor: "#000", 
-        areaButton: {backgroundColor: "#d4d4d8"},
-    }
-
-    : { backgroundColor: "#000", 
-        textColor: "#fff", 
-        areaButton: {backgroundColor: "#262626" }
-    };
+    ? {
+        backgroundColor: "#f0f0f0",
+        textColor: "#000",
+        areaButton: { backgroundColor: "#e4e4e7" },
+        next: { borderBottomColor: "#d4d4d8", borderTopColor: "#d4d4d8" },
+      }
+    : {
+        backgroundColor: "#000",
+        textColor: "#fff",
+        areaButton: { backgroundColor: "#262626" },
+        next: { borderBottomColor: "#404040", borderTopColor: "#404040" },
+      };
 
 
   return (
