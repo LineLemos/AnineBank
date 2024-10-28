@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { ThemeProvider, useTheme } from "../components/Context";
+import { useTheme } from "../components/Context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSaldo } from "../components/SaldoContext";
 import {
+  Alert,
   TextInput,
   View,
   Text,
@@ -8,43 +11,56 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function Pix({ route, navigation }) {
-
+export default function Pix({ navigation }) {
   const { theme } = useTheme();
-  const { saldo, setSaldo } = route.params;
+  const { saldo, setSaldo } = useSaldo();
   const [valorPix, setValorPix] = useState("");
-  const [valorPix2, setValorPix2] = useState();
+  const [valorPix2, setValorPix2] = useState("");
   const [chavePix, setChavePix] = useState("");
-
-  const formatCurrency = (value) => {
-    const cleanedValue = value.replace(/\D/g, "");
-    const formattedValue = (cleanedValue / 100).toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-    return formattedValue;
-  };
 
   const handleInputChange = (value) => {
     const cleanedValue = value.replace(/\D/g, "");
     const floatValue = parseFloat(cleanedValue) / 100;
-
+    setValorPix(formatCurrency(cleanedValue));
     setValorPix2(floatValue);
-    setValorPix(formatCurrency(value));
   };
 
-  const sendPix = () => {
-    const valor = parseFloat(valorPix2);
-    const valorSaldo = parseFloat(saldo);
-    console.log("Transferência: ", valor);
-    console.log("Saldo: ", valorSaldo);
-    console.log("Transferência 2: ", valorPix2);
+  const formatCurrency = (value) => {
+    const cleanedValue = value.replace(/\D/g, "");
+    const floatValue = parseFloat(cleanedValue) / 100;
+    return floatValue.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  };
 
-    if (valor <= saldo) {
-      setSaldo(saldo - valor);
+  const saveSaldo = async (newSaldo) => {
+    try {
+      await AsyncStorage.setItem("saldo", newSaldo.toString());
+      setSaldo(newSaldo);
+    } catch (error) {
+      console.error("Erro ao salvar saldo no AsyncStorage:", error);
+    }
+  };
+
+  const sendPix = async () => {
+    if (chavePix.length < 5) {
+      Alert.alert("Aviso", "Digite nome e sobrenome");
+      return;
+    }
+    const valor = parseFloat(valorPix2);
+    if (isNaN(valor) || valor <= 0) {
+      Alert.alert("Aviso", "Por favor, insira um valor válido para o PIX.");
+      return;
+    }
+
+    if (saldo !== null && valor <= saldo) {
+      const novoSaldo = saldo - valor;
+      await saveSaldo(novoSaldo);
+      Alert.alert("Sucesso", "Transferência realizada.");
       navigation.goBack();
     } else {
-      alert("Saldo insuficiente.");
+      Alert.alert("Aviso", "Saldo insuficiente.");
     }
   };
 
@@ -54,7 +70,7 @@ export default function Pix({ route, navigation }) {
     >
       <Text style={[styles.label, { color: theme.textColor }]}>Chave PIX:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme.textColor }]}
         placeholder="Digite a chave PIX"
         placeholderTextColor="#737373"
         value={chavePix}
@@ -64,7 +80,7 @@ export default function Pix({ route, navigation }) {
         Valor do PIX:
       </Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme.textColor }]}
         placeholder="Digite o valor"
         placeholderTextColor="#737373"
         value={valorPix}
@@ -83,7 +99,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: "center",
-    marginBottom: 130,
   },
 
   label: {

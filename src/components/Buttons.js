@@ -2,11 +2,9 @@ import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
-import { ThemeProvider, useTheme } from "../components/Context";
-
+import { useTheme } from "../components/Context";
 
 export default function Buttons({ onPress }) {
-
   const { theme } = useTheme();
 
   const buttons = [
@@ -117,8 +115,7 @@ const styles = StyleSheet.create({
   actionButton: {
     paddingTop: 40,
     paddingHorizontal: 8,
-    alignItems: 'center',
-   
+    alignItems: "center",
   },
 
   areaButton: {
@@ -135,24 +132,23 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontWeight: "600",
     justifyContent: "center",
-    alignItems: 'center',
+    alignItems: "center",
     width: 70,
     height: 55,
-    
   },
-    myCardsWrapper: {
-        padding: 20,
-    }, 
+  myCardsWrapper: {
+    padding: 20,
+  },
 
-    myCard: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 16,
-        borderRadius: 16,
-        marginTop: 16,
-    },
+  myCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 16,
+    borderRadius: 16,
+    marginTop: 16,
+  },
 
-    myCards:{
-      marginLeft: 15,
-    }
+  myCards: {
+    marginLeft: 15,
+  },
 });

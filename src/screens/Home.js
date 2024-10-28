@@ -1,24 +1,48 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Buttons from "../components/Buttons";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import {useTheme} from "../components/Context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SaldoProvider, useSaldo } from "../components/SaldoContext";
 
 
-export default function Home({ navigation }) {
-  const [saldo, setSaldo] = useState(100);
-  const handlePix = () => {
-    navigation.navigate("Pix", { saldo, setSaldo });
+  export default function Home({ navigation }) {
+    const {saldo, setSaldo} = useSaldo();
+    const { theme } = useTheme();
+
+
+useEffect(() => {
+  const loadSaldo = async () => {
+    try {
+      const savedSaldo = await AsyncStorage.getItem("saldo");
+      if (savedSaldo !== null) {
+        setSaldo(parseFloat(savedSaldo));
+      } else {
+        const defaultSaldo = 100;
+        setSaldo(defaultSaldo);
+        await AsyncStorage.setItem("saldo", defaultSaldo.toString());
+      }
+    } catch (error) {
+      console.error("Erro ao carregar saldo:", error);
+    }
   };
+  loadSaldo();
+}, []);
 
-  const { theme } = useTheme();
 
-  const formatCurrency = (value) => {
-    return value.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-  };
+    const handlePix = () => {
+      navigation.navigate("Pix");
+    };
+
+
+   const formatCurrency = (value) => {
+     return value.toLocaleString("pt-BR", {
+       style: "currency",
+       currency: "BRL",
+     });
+   };
+
 
   return (
     <View
@@ -83,11 +107,13 @@ export default function Home({ navigation }) {
         >
           <FontAwesome6 name="angle-right" size={18} color={theme.textColor} />
         </View>
-        <Text style={styles.p}>Fatura atual</Text>
+        <Text style={[styles.p, { color: theme.textColor }]}>Fatura atual</Text>
         <Text style={[styles.number, { color: theme.textColor }]}>
           R$1.200,00
         </Text>
-        <Text style={styles.p}>Limite disponível: R$700,00</Text>
+        <Text style={[styles.p, { color: theme.textColor }]}>
+          Limite disponível: R$700,00
+        </Text>
       </View>
     </View>
   );
@@ -100,14 +126,14 @@ const styles = StyleSheet.create({
   },
 
   balance: {
-    color: "#fff",
+   
     paddingLeft: 20,
     fontWeight: 600,
     fontSize: 19,
   },
 
   account: {
-    color: "#fff",
+    
     fontSize: 19,
     fontWeight: 600,
     paddingLeft: 20,
